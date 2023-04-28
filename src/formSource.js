@@ -1,77 +1,112 @@
-export const userInputs = [
-    {
-      id: 1,
-      label: "Username",
-      type: "text",
-      placeholder: "john_doe",
-    },
-    {
-      id: 2,
-      label: "Name and surname",
-      type: "text",
-      placeholder: "John Doe",
-    },
-    {
-      id: 3,
-      label: "Email",
-      type: "mail",
-      placeholder: "john_doe@gmail.com",
-    },
-    {
-      id: 4,
-      label: "Phone",
-      type: "text",
-      placeholder: "+1 234 567 89",
-    },
-    {
-      id: 5,
-      label: "Password",
-      type: "password",
-    },
-    {
-      id: 6,
-      label: "Address",
-      type: "text",
-      placeholder: "Elton St. 216 NewYork",
-    },
-    {
-      id: 7,
-      label: "Country",
-      type: "text",
-      placeholder: "USA",
-    },
-  ];
-  
-  export const productInputs = [
-    {
-      id: 1,
-      label: "Title",
-      type: "text",
-      placeholder: "Apple Macbook Pro",
-    },
-    {
-      id: 2,
-      label: "Description",
-      type: "text",
-      placeholder: "Description",
-    },
-    {
-      id: 3,
-      label: "Category",
-      type: "text",
-      placeholder: "Computers",
-    },
-    {
-      id: 4,
-      label: "Price",
-      type: "text",
-      placeholder: "100",
-    },
-    {
-      id: 5,
-      label: "Stock",
-      type: "text",
-      placeholder: "in stock",
-    },
-  ];
-  
+const userInputs = [
+  {
+    id: "userName",
+    label: "Usuário(a)",
+    type: "text",
+    placeholder: "nome",
+  },
+  {
+    id: "displayName",
+    label: "Nome completo",
+    type: "text",
+    placeholder: "fulano(a) de tal",
+  },
+  {
+    id: "email",
+    label: "Email",
+    type: "mail",
+    placeholder: "exemplo@gmail.com",
+  },
+  {
+    id: "phone",
+    label: "Contato telefônico",
+    type: "text",
+    placeholder: "(69) 9 9999-9999",
+  },
+  {
+    id: "address",
+    label: "Endereço",
+    type: "text",
+    placeholder: "Rua ou avenida - nº - bairro - cidade.",
+  },
+];
+
+const productInputs = [
+  {
+    id: "title",
+    label: "Nome",
+    type: "text",
+    placeholder: "nome do produto",
+  },
+  {
+    id: "type",
+    label: "Tipo",
+    type: "select",
+    options: [
+      { value: "other", label: "Outro" },
+      { value: "celular", label: "celular" },
+      { value: "case", label: "capinha" },
+      { value: "film", label: "película" },
+      { value: "charger", label: "carregador" },
+      { value: "cable", label: "cabo" },
+      { value: "screen", label: "tela" },
+      { value: "work", label: "serviços" },
+      { value: "headphone", label: "fone de ouvido" },
+      { value: "boxphone", label: "caixa de som" },
+      { value: "batery", label: "bateria" },
+    ],
+  },
+  {
+    id: "brand",
+    label: "Marca",
+    type: "select",
+    options: [
+      { value: "Other", label: "Outro" },
+      { value: "Apple", label: "Apple" },
+      { value: "Samsung", label: "Samsung" },
+      { value: "Motorola", label: "Motorola" },
+      { value: "Lg", label: "Lg" },
+      { value: "Asus", label: "Asus" },
+      { value: "Nokia", label: "Nokia" },
+      { value: "Xiaomi", label: "Xiaomi" },
+      { value: "Mi", label: "Mi" },
+    ],
+  },
+  {
+    id: "cost",
+    label: "Custo",
+    type: "number",
+    placeholder: "R$",
+  },
+  {
+    id: "color",
+    label: "Cor",
+    type: "select",
+    options: [
+      { value: "Other", label: "Outro" },
+      { value: "white", label: "branco" },
+      { value: "yellow", label: "amarelo" },
+      { value: "blue", label: "azul" },
+      { value: "black", label: "preto" },
+      { value: "gray", label: "cinza" },
+      { value: "purple", label: "roxo" },
+      { value: "red", label: "vermelho" },
+      { value: "green", label: "verde" },
+    ],
+  },
+  {
+    id: "price",
+    label: "Preço",
+    type: "number",
+    placeholder: "R$",
+  },
+  {
+    id: "quantity",
+    label: "Quantidade",
+    type: "number",
+    placeholder: "em estoque",
+  },
+];
+
+
+export { userInputs, productInputs };

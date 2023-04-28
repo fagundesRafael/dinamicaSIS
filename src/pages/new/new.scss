@@ -58,6 +58,14 @@
               border: none;
               border-bottom: 1px solid gray;
             }
+
+            select {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid gray;
+              background-color: transparent;
+            }
           }
 
           button {
@@ -69,6 +77,11 @@
             font-weight: bold;
             cursor: pointer;
             margin-top: 10px;
+
+            &:disabled {
+              background-color: rgba(3, 92, 92, 0.322);
+              cursor: not-allowed;
+            }
           }
         }
       }

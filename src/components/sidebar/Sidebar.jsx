@@ -21,68 +21,75 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">lamadmin</span>
+          <span className="logo">DinâmicaSIS</span>
         </Link>
       </div>
       <hr />
       <div className="center">
         <ul>
-          <p className="title">MAIN</p>
+          <p className="title">Principal</p>
           <li>
             <DashboardIcon className="icon" />
-            <span>Dashboard</span>
+            <span>Painel de Controle</span>
           </li>
-          <p className="title">LISTS</p>
+          <p className="title">Listas</p>
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Clientes</span>
             </li>
           </Link>
           <Link to="/products" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Products</span>
+              <span>Produtos</span>
             </li>
           </Link>
           <li>
+            <PsychologyOutlinedIcon className="icon" />
+            <span>Serviços</span>
+          </li>
+          <li>
             <CreditCardIcon className="icon" />
-            <span>Orders</span>
+            <span>Pendências</span>
           </li>
           <li>
             <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
+            <span>Entregas</span>
           </li>
-          <p className="title">USEFUL</p>
+          <p className="title">Utilitários</p>
           <li>
             <InsertChartIcon className="icon" />
-            <span>Stats</span>
+            <span>Gráficos</span>
           </li>
           <li>
             <NotificationsNoneIcon className="icon" />
-            <span>Notifications</span>
+            <span>Notificações</span>
           </li>
-          <p className="title">SERVICE</p>
-          <li>
-            <SettingsSystemDaydreamOutlinedIcon className="icon" />
-            <span>System Health</span>
-          </li>
-          <li>
-            <PsychologyOutlinedIcon className="icon" />
-            <span>Logs</span>
-          </li>
-          <li>
-            <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
-          </li>
-          <p className="title">USER</p>
+          <p className="title">Sistema</p>
+          <Link
+            to="https://console.firebase.google.com/u/0/project/lamafirebase-d19be/overview?hl=pt-br"
+            style={{ textDecoration: "none" }}
+          >
+            <li>
+              <SettingsSystemDaydreamOutlinedIcon className="icon" />
+              <span>Banco de dados</span>
+            </li>
+          </Link>
+          <Link to="/configuration" style={{ textDecoration: "none" }}>
+            <li>
+              <SettingsApplicationsIcon className="icon" />
+              <span>Configurações</span>
+            </li>
+          </Link>
+          <p className="title">Usuário</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />
-            <span>Profile</span>
+            <span>Perfil</span>
           </li>
           <li>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span>Sair</span>
           </li>
         </ul>
       </div>
