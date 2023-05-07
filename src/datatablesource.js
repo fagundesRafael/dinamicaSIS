@@ -68,6 +68,13 @@ export const ProductsColumns = [
     field: "type",
     headerName: "Tipo",
     width: 115,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.type}`}>
+          {params.row.type}
+        </div>
+      );
+    },
   },
   {
     field: "cost",
@@ -130,6 +137,71 @@ export const FeaturesColumns = [
       return (
         <div className={`cellWithStatus ${params.row.types}`}>
           {params.row.types}
+        </div>
+      );
+    },
+  },
+];
+
+export const SalesColumns = [
+  { field: "id", headerName: "ID", width: 70 },
+  {
+    field: "client",
+    headerName: "Comprador(a)",
+    width: 180,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          <img className="cellImg" src={params.row.img} alt="avatar" />
+          {params.row.userName}
+        </div>
+      );
+    },
+  },
+  {
+    field: "purchases",
+    headerName: "Compra(s) e/ou serviço(s)",
+    width: 280,
+    renderCell: (params) => {
+      return (
+        <div className="cellWithImg">
+          {params.row.purchases}
+        </div>
+      );
+    },
+  },
+  {
+    field: "tatal",
+    headerName: "Total ($)",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.cost}`}>
+          {params.row.cost}
+        </div>
+      );
+    },
+  },
+  {
+    field: "profit",
+    headerName: "Lucro ($)",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.price}`}>
+          {params.row.price}
+        </div>
+      );
+    },
+  },
+  {
+    field: "form",
+    headerName: "Forma ($)",
+    width: 100,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.quantity}`}>
+          {params.row.quantity}
         </div>
       );
     },

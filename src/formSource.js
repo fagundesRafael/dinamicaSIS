@@ -1,5 +1,6 @@
 const userInputs = [
   {
+    setDocumentPath: "users",
     id: "userName",
     label: "Usuário(a)",
     type: "text",
@@ -33,6 +34,7 @@ const userInputs = [
 
 const productInputs = [
   {
+    setDocumentPath: "products",
     id: "title",
     label: "Nome",
     type: "text",
@@ -41,35 +43,34 @@ const productInputs = [
   {
     id: "type",
     label: "Tipo",
-    type: "select",
+    type: "selectType",
     options: [
-      { value: "other", label: "Outro" },
-      { value: "celular", label: "celular" },
-      { value: "case", label: "capinha" },
-      { value: "film", label: "película" },
-      { value: "charger", label: "carregador" },
-      { value: "cable", label: "cabo" },
-      { value: "screen", label: "tela" },
-      { value: "work", label: "serviços" },
-      { value: "headphone", label: "fone de ouvido" },
-      { value: "boxphone", label: "caixa de som" },
-      { value: "batery", label: "bateria" },
+      // { value: "outro", label: "outro" },
+      // { value: "celular", label: "celular" },
+      // { value: "capinha", label: "capinha" },
+      // { value: "película", label: "película" },
+      // { value: "carregador", label: "carregador" },
+      // { value: "cabo", label: "cabo" },
+      // { value: "tela", label: "tela" },
+      // { value: "headphone", label: "headphone" },
+      // { value: "caixinha", label: "caixinha" },
+      // { value: "bateria", label: "bateria" },
     ],
   },
   {
     id: "brand",
     label: "Marca",
-    type: "select",
+    type: "selectBrand",
     options: [
-      { value: "Other", label: "Outro" },
-      { value: "Apple", label: "Apple" },
-      { value: "Samsung", label: "Samsung" },
-      { value: "Motorola", label: "Motorola" },
-      { value: "Lg", label: "Lg" },
-      { value: "Asus", label: "Asus" },
-      { value: "Nokia", label: "Nokia" },
-      { value: "Xiaomi", label: "Xiaomi" },
-      { value: "Mi", label: "Mi" },
+      // { value: "Outro", label: "Outro" },
+      // { value: "Apple", label: "Apple" },
+      // { value: "Samsung", label: "Samsung" },
+      // { value: "Motorola", label: "Motorola" },
+      // { value: "Lg", label: "Lg" },
+      // { value: "Asus", label: "Asus" },
+      // { value: "Nokia", label: "Nokia" },
+      // { value: "Xiaomi", label: "Xiaomi" },
+      // { value: "Mi", label: "Mi" },
     ],
   },
   {
@@ -81,17 +82,18 @@ const productInputs = [
   {
     id: "color",
     label: "Cor",
-    type: "select",
+    type: "selectColor",
     options: [
-      { value: "Other", label: "Outro" },
-      { value: "white", label: "branco" },
-      { value: "yellow", label: "amarelo" },
-      { value: "blue", label: "azul" },
-      { value: "black", label: "preto" },
-      { value: "gray", label: "cinza" },
-      { value: "purple", label: "roxo" },
-      { value: "red", label: "vermelho" },
-      { value: "green", label: "verde" },
+      { value: "_N.I._", label: "N.I." },
+      { value: "branco", label: "branco" },
+      { value: "amarelo", label: "amarelo" },
+      { value: "azul", label: "azul" },
+      { value: "preto", label: "preto" },
+      { value: "cinza", label: "cinza" },
+      { value: "roxo", label: "roxo" },
+      { value: "vermelho", label: "vermelho" },
+      { value: "verde", label: "verde" },
+      { value: "prata", label: "prata" },
     ],
   },
   {
@@ -107,6 +109,5 @@ const productInputs = [
     placeholder: "em estoque",
   },
 ];
-
 
 export { userInputs, productInputs };

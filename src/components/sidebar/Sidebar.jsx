@@ -14,6 +14,7 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import logoDinamica from "../../assets/logoDinamica.png"
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
@@ -21,7 +22,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">DinâmicaSIS</span>
+          <span className="logo"><img src={logoDinamica} alt="" style={{ width: "130px", marginTop: "8px", marginRight: "8px"}}/></span>
         </Link>
       </div>
       <hr />
@@ -49,11 +50,13 @@ const Sidebar = () => {
             <PsychologyOutlinedIcon className="icon" />
             <span>Serviços</span>
           </li>
+          <Link to="/sales" style={{ textDecoration: "none" }}>
           <li>
             <CreditCardIcon className="icon" />
-            <span>Pendências</span>
+            <span>Vendas</span>
           </li>
-          <li>
+          </Link>
+          <li style={{cursor: "not-allowed"}}>
             <LocalShippingIcon className="icon" />
             <span>Entregas</span>
           </li>
@@ -62,7 +65,7 @@ const Sidebar = () => {
             <InsertChartIcon className="icon" />
             <span>Gráficos</span>
           </li>
-          <li>
+          <li style={{cursor: "not-allowed"}}>
             <NotificationsNoneIcon className="icon" />
             <span>Notificações</span>
           </li>
@@ -71,17 +74,17 @@ const Sidebar = () => {
             to="https://console.firebase.google.com/u/0/project/lamafirebase-d19be/overview?hl=pt-br"
             style={{ textDecoration: "none" }}
           >
-            <li>
+            <li style={{ textDecoration: "none"}}>
               <SettingsSystemDaydreamOutlinedIcon className="icon" />
               <span>Banco de dados</span>
             </li>
           </Link>
-          <Link to="/configuration" style={{ textDecoration: "none" }}>
-            <li>
+            <Link to="/configurations" style={{ textDecoration: "none" }}>
+            <li style={{ textDecoration: "none" }}>
               <SettingsApplicationsIcon className="icon" />
               <span>Configurações</span>
             </li>
-          </Link>
+            </Link>
           <p className="title">Usuário</p>
           <li>
             <AccountCircleOutlinedIcon className="icon" />

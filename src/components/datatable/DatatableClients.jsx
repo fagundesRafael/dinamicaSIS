@@ -67,14 +67,14 @@ const DatatableClients = () => {
       renderCell: (params) => {
         return (
           <div className="cellAction">
-            <Link to="/users/test" style={{ textDecoration: "none" }}>
-              <div className="viewButton">View</div>
+            <Link to={`/users/${params.row.id}`} style={{ textDecoration: "none" }}>
+              <div className="viewButton">Ver</div>
             </Link>
             <div
               className="deleteButton"
               onClick={() => handleDelete(params.row.id)}
             >
-              Delete
+              Deletar
             </div>
           </div>
         );
