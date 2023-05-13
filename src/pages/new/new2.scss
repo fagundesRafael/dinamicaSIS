@@ -18,8 +18,8 @@
         font-size: 20px;
       }
 
-      .left {
-        flex: 1;
+      .right {
+        flex: 2;
         text-align: center;
         img {
           margin-top: 20%;
@@ -38,7 +38,7 @@
         }
       }
 
-      .right {
+      .left {
         flex: 3;
 
         form {

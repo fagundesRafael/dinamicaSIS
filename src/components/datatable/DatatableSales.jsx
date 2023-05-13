@@ -35,7 +35,7 @@ const DatableSales = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "products", id));
+      await deleteDoc(doc(db, "sales", id));
       setData(data.filter((item) => item.id !== id));
     } catch (error) {
       console.log(error);

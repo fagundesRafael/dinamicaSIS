@@ -2,6 +2,7 @@ import "./style/dark.scss";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import New from "./pages/new/New";
+import New2 from "./pages/new/New2";
 import SingleUser from "./pages/single/SingleUser";
 import SingleProduct from "./pages/single/SingleProduct";
 import ClientsList from "./pages/list/ClientsList"
@@ -10,7 +11,7 @@ import ProductEdit from "./pages/edit/ProductEdit";
 import SalesList from "./pages/list/SalesList";
 import Configurations from "./pages/system/Configurations";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import { productInputs, userInputs, salesInputs } from "./formSource";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
@@ -55,7 +56,7 @@ function App() {
               <Route path="edit/:salesId" element={<RequireAuth><ProductEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
               <Route
                 path="new"
-                element={<New inputs={productInputs} title="Registrar nova transação" />}
+                element={<New2 inputs={salesInputs} title="Registrar nova transação" />}
               />
             </Route>
             <Route path="configurations">

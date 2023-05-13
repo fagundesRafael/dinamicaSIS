@@ -9,7 +9,7 @@ import { colors } from "@mui/material";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const ClientsList = ({ topTitle }) => {
+const ClientsList = ({ inputs, topTitle }) => {
   const { productId } = useParams();
   const { document, loading } = useFetchDocument("products", productId);
   const { updateDocument, response } = useUpdateDocument("products");
@@ -165,35 +165,23 @@ const ClientsList = ({ topTitle }) => {
               </div>
               <div className="formInput">
                 <label>Cor:</label>
-                <select id="color" value={colors}>
-                  <option key="61" value="outro">
-                    outro
-                  </option>
-                  <option key="62" value="Branco">
-                    branco
-                  </option>
-                  <option key="63" value="amarelo">
-                    amarelo
-                  </option>
-                  <option key="64" value="azul">
-                    azul
-                  </option>
-                  <option key="65" value="preto">
-                    preto
-                  </option>
-                  <option key="66" value="cinza">
-                    cinza
-                  </option>
-                  <option key="67" value="roxo">
-                    roxo
-                  </option>
-                  <option key="68" value="vermelho">
-                    vermelho
-                  </option>
-                  <option key="69" value="verde">
-                    verde
-                  </option>
-                </select>
+                {inputs.map((input) => (
+                  <>
+                  {input.type === "selectColor" && (
+                    <select
+                      id={input.id}
+                      name={input.id}
+                      value={color}
+                      onChange={(e) => setColor(e.target.value)}
+                    >
+                      {input.options.map((option) => (
+                        <option key={option.value}>
+                          {option.label}
+                        </option>
+                      ))}
+                    </select>
+                  )} </>
+                ))}
               </div>
               <div className="formInput">
                 <label>Preço:</label>
@@ -201,7 +189,7 @@ const ClientsList = ({ topTitle }) => {
                   type="number"
                   placeholder="R$"
                   value={price}
-                  onChange={(e) => setColor(e.target.value)}
+                  onChange={(e) => setPrice(e.target.value)}
                 />
               </div>
               <div className="formInput">

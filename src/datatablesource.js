@@ -151,8 +151,7 @@ export const SalesColumns = [
     width: 180,
     renderCell: (params) => {
       return (
-        <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
+        <div className="cellWithStatus">
           {params.row.userName}
         </div>
       );
@@ -164,14 +163,14 @@ export const SalesColumns = [
     width: 280,
     renderCell: (params) => {
       return (
-        <div className="cellWithImg">
+        <div className="cellWithStatus">
           {params.row.purchases}
         </div>
       );
     },
   },
   {
-    field: "tatal",
+    field: "total",
     headerName: "Total ($)",
     width: 100,
     renderCell: (params) => {

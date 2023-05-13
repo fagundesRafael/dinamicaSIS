@@ -2,31 +2,31 @@ const userInputs = [
   {
     setDocumentPath: "users",
     id: "userName",
-    label: "Usuário(a)",
+    label: "Usuário(a):",
     type: "text",
     placeholder: "nome",
   },
   {
     id: "displayName",
-    label: "Nome completo",
+    label: "Nome completo:",
     type: "text",
     placeholder: "fulano(a) de tal",
   },
   {
     id: "email",
-    label: "Email",
+    label: "Email:",
     type: "mail",
     placeholder: "exemplo@gmail.com",
   },
   {
     id: "phone",
-    label: "Contato telefônico",
+    label: "Contato telefônico:",
     type: "text",
     placeholder: "(69) 9 9999-9999",
   },
   {
     id: "address",
-    label: "Endereço",
+    label: "Endereço:",
     type: "text",
     placeholder: "Rua ou avenida - nº - bairro - cidade.",
   },
@@ -36,52 +36,35 @@ const productInputs = [
   {
     setDocumentPath: "products",
     id: "title",
-    label: "Nome",
+    label: "Nome:",
     type: "text",
     placeholder: "nome do produto",
   },
   {
     id: "type",
-    label: "Tipo",
+    label: "Tipo:",
     type: "selectType",
     options: [
-      // { value: "outro", label: "outro" },
-      // { value: "celular", label: "celular" },
-      // { value: "capinha", label: "capinha" },
-      // { value: "película", label: "película" },
-      // { value: "carregador", label: "carregador" },
-      // { value: "cabo", label: "cabo" },
-      // { value: "tela", label: "tela" },
-      // { value: "headphone", label: "headphone" },
-      // { value: "caixinha", label: "caixinha" },
-      // { value: "bateria", label: "bateria" },
+      // firebase resource
     ],
   },
   {
     id: "brand",
-    label: "Marca",
+    label: "Marca:",
     type: "selectBrand",
     options: [
-      // { value: "Outro", label: "Outro" },
-      // { value: "Apple", label: "Apple" },
-      // { value: "Samsung", label: "Samsung" },
-      // { value: "Motorola", label: "Motorola" },
-      // { value: "Lg", label: "Lg" },
-      // { value: "Asus", label: "Asus" },
-      // { value: "Nokia", label: "Nokia" },
-      // { value: "Xiaomi", label: "Xiaomi" },
-      // { value: "Mi", label: "Mi" },
+      // firebase resource
     ],
   },
   {
     id: "cost",
-    label: "Custo",
+    label: "Custo:",
     type: "number",
     placeholder: "R$",
   },
   {
     id: "color",
-    label: "Cor",
+    label: "Cor:",
     type: "selectColor",
     options: [
       { value: "_N.I._", label: "N.I." },
@@ -98,7 +81,7 @@ const productInputs = [
   },
   {
     id: "price",
-    label: "Preço",
+    label: "Preço:",
     type: "number",
     placeholder: "R$",
   },
@@ -110,4 +93,126 @@ const productInputs = [
   },
 ];
 
-export { userInputs, productInputs };
+const salesInputs = [
+  {
+    setDocumentPath: "sales",
+    id: "client",
+    label: "Cliente:",
+    type: "selectUsers",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "paymentForm",
+    label: "Forma de pagamento:",
+    type: "selecForm",
+    options: [
+      { value: "NII", label: "N.I." },
+      { value: "dinheiro", label: "dinheiro" },
+      { value: "pix", label: "pix" },
+      { value: "transferência", label: "transferência" },
+      { value: "débito", label: "débito" },
+      { value: "crédito", label: "crédito" },
+      { value: "permuta", label: "permuta" },
+      { value: "outros", label: "outros" },
+    ],
+  },
+  {
+    id: "item1",
+    label: "Item 01:",
+    type: "selectItems",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "qtt_1",
+    label: "Quantidade:",
+    type: "number_qtt",
+    placeholder: "informe a quantidade do item 01"
+  },
+  {
+    id: "item2",
+    label: "Item 02:",
+    type: "selectItems",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "qtt_2",
+    label: "Quantidade:",
+    type: "number_qtt",
+    placeholder: "informe a quantidade do item 2"
+  },
+  {
+    id: "item3",
+    label: "Item 03:",
+    type: "selectItems",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "qtt_3",
+    label: "Quantidade:",
+    type: "number_qtt",
+    placeholder: "informe a quantidade do item 03"
+  },
+  {
+    id: "service1",
+    label: "Serviço 01:",
+    type: "selectServices",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "service2",
+    label: "Serviço 02:",
+    type: "selectServices",
+    options: [
+      // firebase resource
+    ],
+  },
+  {
+    id: "discount",
+    label: "Desconto(s) e/ou acréscimo(s):",
+    type: "number",
+    placeholder: "$",
+  },
+  {
+    id: "observations",
+    label: "Observações:",
+    type: "text",
+    placeholder: "anotações importantes",
+  },
+  {
+    id: "cost",
+    label: "Custo:",
+    type: "number",
+    placeholder: "R$",
+  },
+  {
+    id: "total",
+    label: "Total:",
+    type: "number",
+    placeholder: "R$",
+  },
+  {
+    id: "profit",
+    label: "Lucro:",
+    type: "number",
+    placeholder: "R$",
+  },
+  {
+    id: "price",
+    label: "Preço:",
+    type: "number",
+    placeholder: "R$",
+  },
+  
+];
+
+export { userInputs, productInputs, salesInputs };
