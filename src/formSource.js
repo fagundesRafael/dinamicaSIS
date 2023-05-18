@@ -104,73 +104,22 @@ const salesInputs = [
     ],
   },
   {
-    id: "paymentForm",
-    label: "Forma de pagamento:",
-    type: "selecForm",
-    options: [
-      { value: "NII", label: "N.I." },
-      { value: "dinheiro", label: "dinheiro" },
-      { value: "pix", label: "pix" },
-      { value: "transferência", label: "transferência" },
-      { value: "débito", label: "débito" },
-      { value: "crédito", label: "crédito" },
-      { value: "permuta", label: "permuta" },
-      { value: "outros", label: "outros" },
-    ],
-  },
-  {
-    id: "item1",
-    label: "Item 01:",
+    id: "item",
+    label: "Item:",
     type: "selectItems",
     options: [
       // firebase resource
     ],
   },
   {
-    id: "qtt_1",
+    id: "qtt",
     label: "Quantidade:",
     type: "number_qtt",
-    placeholder: "informe a quantidade do item 01"
+    placeholder: "informe a quantidade do item"
   },
   {
-    id: "item2",
-    label: "Item 02:",
-    type: "selectItems",
-    options: [
-      // firebase resource
-    ],
-  },
-  {
-    id: "qtt_2",
-    label: "Quantidade:",
-    type: "number_qtt",
-    placeholder: "informe a quantidade do item 2"
-  },
-  {
-    id: "item3",
-    label: "Item 03:",
-    type: "selectItems",
-    options: [
-      // firebase resource
-    ],
-  },
-  {
-    id: "qtt_3",
-    label: "Quantidade:",
-    type: "number_qtt",
-    placeholder: "informe a quantidade do item 03"
-  },
-  {
-    id: "service1",
-    label: "Serviço 01:",
-    type: "selectServices",
-    options: [
-      // firebase resource
-    ],
-  },
-  {
-    id: "service2",
-    label: "Serviço 02:",
+    id: "service",
+    label: "Serviço:",
     type: "selectServices",
     options: [
       // firebase resource
@@ -187,31 +136,7 @@ const salesInputs = [
     label: "Observações:",
     type: "text",
     placeholder: "anotações importantes",
-  },
-  {
-    id: "cost",
-    label: "Custo:",
-    type: "number",
-    placeholder: "R$",
-  },
-  {
-    id: "total",
-    label: "Total:",
-    type: "number",
-    placeholder: "R$",
-  },
-  {
-    id: "profit",
-    label: "Lucro:",
-    type: "number",
-    placeholder: "R$",
-  },
-  {
-    id: "price",
-    label: "Preço:",
-    type: "number",
-    placeholder: "R$",
-  },
+  }
   
 ];
 

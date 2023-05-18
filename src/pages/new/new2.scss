@@ -1,8 +1,8 @@
-.new {
+.new2 {
   width: 100%;
   display: flex;
 
-  .newContainer {
+  .newContainer2 {
     flex: 6;
 
     .top,
@@ -21,20 +21,86 @@
       .right {
         flex: 2;
         text-align: center;
-        img {
-          margin-top: 20%;
-          transition: 0.2s;
-        }
-        img:hover {
-          margin-top: 20%;
-          transform: scale(0.95);
-        }
 
         img {
-          width: 100px;
-          height: 100px;
+          // position: absolute;
+          // top: 53%;
+          // left: 52%;
+          margin-top: 5%;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
           object-fit: cover;
+        }
+
+        form {
+          display: flex;
+          flex-direction: column;
+
+          .itemList {
+            background-color: rgba($color: #240077, $alpha: 0.1);
+            width: 60%;
+            margin: 10px auto;
+            border-radius: 0 0 10px 10px;
+
+            h5 {
+              background-color: rgba($color: #240077, $alpha: 0.1);
+              padding: 6px;
+              font-size: 16px;
+            }
+
+            h6 {
+              padding: 2px;
+              font-size: 14px;
+            }
+
+            h6:last-child {
+              border-top: #000000 solid 0.2px;
+              width: 60%;
+              margin: 0 auto;
+            }
+          }
+          .formInput {
+            width: 40%;
+            margin: 0 auto;
+
+            label {
+              display: flex;
+              align-items: center;
+              gap: 10px;
+            }
+
+            input {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid gray;
+            }
+
+            select {
+              width: 100%;
+              padding: 5px;
+              border: none;
+              border-bottom: 1px solid gray;
+              background-color: transparent;
+            }
+
+            button {
+              width: 150px;
+              padding: 10px;
+              border: none;
+              background-color: teal;
+              color: white;
+              font-weight: bold;
+              cursor: pointer;
+              margin-top: 10px;
+
+              &:disabled {
+                background-color: rgba(3, 92, 92, 0.322);
+                cursor: not-allowed;
+              }
+            }
+          }
         }
       }
 
@@ -55,9 +121,9 @@
               align-items: center;
               gap: 10px;
 
-              .icon {
-                cursor: pointer;
-              }
+              // .icon {
+              //   cursor: pointer;
+              // }
             }
 
             input {
@@ -90,6 +156,14 @@
               background-color: rgba(3, 92, 92, 0.322);
               cursor: not-allowed;
             }
+          }
+
+          .error {
+            color: red;
+            font-size: 10px;
+            width: 120px;
+            padding: 2px;
+            background-color: rgba(255, 0, 0, 0.2);
           }
         }
       }

@@ -144,39 +144,54 @@ export const FeaturesColumns = [
 ];
 
 export const SalesColumns = [
-  { field: "id", headerName: "ID", width: 70 },
+  { field: "id", headerName: "ID", width: 40 },
   {
     field: "client",
-    headerName: "Comprador(a)",
-    width: 180,
+    headerName: "Cliente",
+    width: 120,
     renderCell: (params) => {
       return (
         <div className="cellWithStatus">
-          {params.row.userName}
+          {params.row.client}
         </div>
       );
     },
   },
   {
-    field: "purchases",
-    headerName: "Compra(s) e/ou serviço(s)",
-    width: 280,
+    field: "resume",
+    headerName: "Resumo da(s) compra(s) e/ou do(s) serviço(s)",
+    width: 400,
     renderCell: (params) => {
       return (
         <div className="cellWithStatus">
-          {params.row.purchases}
+          {`${params.row.quantity} unid(s) - ${params.row.item}`}
+          {params.row.service && (` - ${params.row.service}`)}
+
+          
         </div>
       );
     },
   },
   {
-    field: "total",
-    headerName: "Total ($)",
+    field: "date",
+    headerName: "Data",
     width: 100,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.cost}`}>
-          {params.row.cost}
+          {params.row.timeString}
+        </div>
+      );
+    },
+  },
+  {
+    field: "price",
+    headerName: "Preço ($)",
+    width: 80,
+    renderCell: (params) => {
+      return (
+        <div className={`cellWithStatus ${params.row.price}`}>
+          {`R$ ${params.row.price * params.row.quantity}`}
         </div>
       );
     },
@@ -184,23 +199,11 @@ export const SalesColumns = [
   {
     field: "profit",
     headerName: "Lucro ($)",
-    width: 100,
+    width: 80,
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.price}`}>
-          {params.row.price}
-        </div>
-      );
-    },
-  },
-  {
-    field: "form",
-    headerName: "Forma ($)",
-    width: 100,
-    renderCell: (params) => {
-      return (
-        <div className={`cellWithStatus ${params.row.quantity}`}>
-          {params.row.quantity}
+          {`R$ ${(params.row.price - params.row.cost)*(params.row.quantity)}`}
         </div>
       );
     },

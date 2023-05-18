@@ -10,23 +10,6 @@ const DatableProducts = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    // --------------fetch document (normal time)---------------------//
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({id: doc.id, ...doc.data()});
-    //     });
-    //     setData(list);
-    //     console.log(list)
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // };
-    // fetchData()
-    // -------------------------------------------------------------//
-
     // --------------query document (real time)---------------------//
     const unsub = onSnapshot(
       collection(db, "products"),

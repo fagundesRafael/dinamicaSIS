@@ -1,23 +1,25 @@
-import "./new2.scss";
-import shopCar from "../../assets/shopCar.jpg";
+import "./edit.scss";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import { useEffect, useState } from "react";
-import {
-  addDoc,
-  serverTimestamp,
-  collection,
-  onSnapshot,
-} from "firebase/firestore";
+import { useNavigate, useParams } from "react-router-dom";
+import { useUpdateDocument } from "../../hooks/useUpdateDocument";
+import { useFetchDocument } from "../../hooks/useFetchDocument";
+import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
-import { useNavigate } from "react-router-dom";
 
-const New2 = ({ inputs, title }) => {
+const SaleEdit = ({ inputs, topTitle }) => {
+  const { saleId } = useParams();
+  const { document, loading } = useFetchDocument("sales", saleId);
+  const { updateDocument, response } = useUpdateDocument("sales");
+
   const [dataUsers, seDataUsers] = useState([""]);
   const [dataProducts, setDataProducts] = useState([""]);
   const [client, setClient] = useState("");
   const [service, setService] = useState("");
   const [item, setItem] = useState("");
+  const [cost, SetCost] = useState("")
+  const [price, setPrice] = useState("")
   const [quantity, setQuantity] = useState("");
   const [observations, setObservations] = useState("");
   const [discount, setDiscount] = useState("");
@@ -77,83 +79,55 @@ const New2 = ({ inputs, title }) => {
 
   const navigate = useNavigate();
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    setError("");
-
-    let findItem = dataProducts.filter(
-      (selectedElement) => selectedElement.title === item
-    );
-    let findCost = findItem.find((selectedElement) => selectedElement.cost);
-    let findPrice = findItem.find((selectedElement) => selectedElement.price);
-    let findQuantity = findItem.find(
-      (selectedElement) => selectedElement.quantity
-    );
-    let numberCheck = parseInt(findQuantity.quantity);
-
-    if (quantity > numberCheck) {
-      setError(
-        `Apenas ${findQuantity.quantity} unidade(s) disponível(eis) para ${item}.`
-      );
-      return;
-    } else {
-      let itemsAdd = {
-        client,
+  const data = {
+    client,
         service,
         item,
-        cost: parseInt(findCost.cost),
-        price: parseInt(findPrice.price),
+        cost,
+        price,
         quantity,
         paymentForm,
         observations,
         discount,
-      };
-
-      setTotalCost(parseInt((findCost.cost)));
-      setTotalPrice(parseInt((findPrice.price)));
-      setCarShop(itemsAdd);
-      
-      
-    }
-    setError("");
-      setService("");
-      setItem("");
-      setQuantity("");
-      setObservations("");
-      setDiscount("");
-
   };
 
-  const handleShopExecute = async (e) => {
+  const handleUpDate = async (e) => {
     e.preventDefault();
 
-    try {
-      // --------------write a document (insert sale)---------------------//
-      const docRef = await addDoc(collection(db, "sales"), {
-        ...carShop,
-        paymentForm,
-        timeStamp: serverTimestamp(),
-        timeString: dataAtual
-      });
-      console.log("Document written with ID: ", docRef.id);
-      // ---------------------------------------------------------------//
-      navigate(-1);
-    } catch (error) {
-      console.log(error);
-    }
+    updateDocument(saleId, data);
+
+    navigate(-1);
   };
 
+  useEffect(() => {
+    if (document) {
+      setClient(document.client)
+      setService(document.service);
+      setItem(document.item);
+      setPrice(document.price);
+      setQuantity(document.quantity);
+      setPaymentForm(document.paymentForm);
+      setObservations(document.observations);
+      setDiscount(document.discount);
+      setTotalCost(document.totalCost);
+      setTotalPrice(document.totalPrice);
+    }
+  }, [document]);
+
   return (
-    <div className="new2">
+    <div className="edit">
       <Sidebar />
-      <div className="newContainer2">
+      <div className="editContainer">
         <Navbar />
         <div className="top">
-          <h1>{title}</h1>
+          <h1>{topTitle}</h1>
         </div>
         <div className="bottom">
           <div className="left">
-            <form onSubmit={handleAdd}>
+            
+          </div>
+          <div className="right">
+          <form >
               <div className="formInput">
                 <label>Cliente:</label>
                 <select
@@ -210,8 +184,8 @@ const New2 = ({ inputs, title }) => {
                 <textarea
                   name="observations"
                   id="observations"
-                  cols="30"
-                  rows="4"
+                  cols="20"
+                  rows="3"
                   value={observations}
                   onChange={(e) => setObservations(e.target.value)}
                 ></textarea>
@@ -225,13 +199,13 @@ const New2 = ({ inputs, title }) => {
                   onChange={(e) => setDiscount(parseInt(e.target.value))}
                 />
               </div>
-              {carShop ? (<button type="submit">Registrar outro</button>) : (<button type="submit">Adicionar</button>)}
+              {carShop ? (<button type="submit">Registrar outro</button>) : (<button type="submit">Atualizar</button>)}
               {error && <h2 className="error">{error}</h2>}
             </form>
           </div>
           <div className="right">
               {carShop && (
-                <form onSubmit={handleShopExecute}>
+                <form>
                 <div className="itemList">
                   <h5>{carShop.item}</h5>
                   <h6>{carShop.quantity} unidade(s) selecionada(s)</h6>
@@ -273,7 +247,6 @@ const New2 = ({ inputs, title }) => {
                 </div>
               </form>
               )}
-              <img src={shopCar} alt="img" />
           </div>
         </div>
       </div>
@@ -281,4 +254,4 @@ const New2 = ({ inputs, title }) => {
   );
 };
 
-export default New2;
+export default SaleEdit;

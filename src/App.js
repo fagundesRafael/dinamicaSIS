@@ -5,9 +5,11 @@ import New from "./pages/new/New";
 import New2 from "./pages/new/New2";
 import SingleUser from "./pages/single/SingleUser";
 import SingleProduct from "./pages/single/SingleProduct";
+import SingleSale from "./pages/single/SingleSale";
 import ClientsList from "./pages/list/ClientsList"
 import ProductsList from "./pages/list/ProductsList"
 import ProductEdit from "./pages/edit/ProductEdit";
+import SaleEdit from "./pages/edit/SaleEdit";
 import SalesList from "./pages/list/SalesList";
 import Configurations from "./pages/system/Configurations";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -52,8 +54,8 @@ function App() {
             </Route>
             <Route path="sales">
               <Route index element={<RequireAuth><SalesList /></RequireAuth>} />
-              <Route path=":salesId" element={<RequireAuth><SingleProduct /></RequireAuth>} />
-              <Route path="edit/:salesId" element={<RequireAuth><ProductEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
+              <Route path=":saleId" element={<RequireAuth><SingleSale /></RequireAuth>} />
+              <Route path="edit/:saleId" element={<RequireAuth><SaleEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
               <Route
                 path="new"
                 element={<New2 inputs={salesInputs} title="Registrar nova transação" />}

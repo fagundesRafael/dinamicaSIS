@@ -5,11 +5,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
 import { useFetchDocument } from "../../hooks/useFetchDocument";
-import { colors } from "@mui/material";
 import { collection, onSnapshot } from "firebase/firestore";
 import { db } from "../../firebase";
 
-const ClientsList = ({ inputs, topTitle }) => {
+const ProductEdit = ({ inputs, topTitle }) => {
   const { productId } = useParams();
   const { document, loading } = useFetchDocument("products", productId);
   const { updateDocument, response } = useUpdateDocument("products");
@@ -215,4 +214,4 @@ const ClientsList = ({ inputs, topTitle }) => {
   );
 };
 
-export default ClientsList;
+export default ProductEdit;

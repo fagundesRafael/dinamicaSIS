@@ -167,7 +167,7 @@ const New = ({ inputs, title }) => {
                   {input.type === "number" &&  (
                     <input
                       id={input.id}
-                      type={input.type}
+                      type='number'
                       autoComplete="on"
                       placeholder={input.placeholder}
                       onChange={handleInput}
