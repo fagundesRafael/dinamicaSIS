@@ -7,8 +7,8 @@ export const userColumns = [
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
-          <img className="cellImg" src={params.row.img} alt="avatar" />
-          {params.row.userName}
+          <img className="cellImg" src={params.row.img} alt="displayName" />
+          {params.row.displayName}
         </div>
       );
     },
@@ -203,7 +203,7 @@ export const SalesColumns = [
     renderCell: (params) => {
       return (
         <div className={`cellWithStatus ${params.row.price}`}>
-          {`R$ ${(params.row.price - params.row.cost)*(params.row.quantity)}`}
+          {`R$ ${params.row.profit}`}
         </div>
       );
     },

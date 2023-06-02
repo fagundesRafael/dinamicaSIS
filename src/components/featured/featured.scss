@@ -51,26 +51,32 @@
       align-items: center;
       justify-content: space-between;
 
-      .item {
-        text-align: center;
+      .groupItem {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        row-gap: 16px;
+        .item {
+          text-align: center;
 
-        .itemTitle {
-          font-size: 14px;
-          color: gray;
-        }
-
-        .itemResult {
-          display: flex;
-          align-items: center;
-          margin-top: 10px;
-          font-size: 14px;
-
-          &.positive {
-            color: green;
+          .itemTitle {
+            font-size: 14px;
+            color: gray;
           }
 
-          &.negative {
-            color: red;
+          .itemResult {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            font-size: 14px;
+
+            &.positive {
+              color: green;
+            }
+
+            &.negative {
+              color: red;
+            }
           }
         }
       }

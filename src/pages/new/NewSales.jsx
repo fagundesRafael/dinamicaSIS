@@ -1,4 +1,5 @@
 import "./new2.scss";
+import { FcCancel } from "react-icons/fc";
 import shopCar from "../../assets/shopCar.jpg";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
@@ -8,30 +9,37 @@ import {
   serverTimestamp,
   collection,
   onSnapshot,
+  doc,
+  setDoc,
+  getDoc,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 
-const New2 = ({ inputs, title }) => {
-  const [dataUsers, seDataUsers] = useState([""]);
+const Sales = ({ inputs, title }) => {
+  const [dataUsers, setDataUsers] = useState([""]);
   const [dataProducts, setDataProducts] = useState([""]);
+
+  const [itemId, setItemId] = useState("");
+
   const [client, setClient] = useState("");
   const [service, setService] = useState("");
   const [item, setItem] = useState("");
   const [quantity, setQuantity] = useState("");
   const [observations, setObservations] = useState("");
-  const [discount, setDiscount] = useState("");
+  const [discount, setDiscount] = useState(0);
   const [paymentForm, setPaymentForm] = useState("");
   const [totalCost, setTotalCost] = useState(0);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [profit, setProfit] = useState(0);
   const [error, setError] = useState("");
   const [carShop, setCarShop] = useState();
 
-  const hoje = new Date()
-  const dia = hoje.getDate().toString().padStart(2, "0")
-  const mes = String(hoje.getMonth() + 1).padStart(2, "0")
-  const ano = hoje.getFullYear()
-  const dataAtual = `${dia}/${mes}/${ano}`
+  const hoje = new Date();
+  const dia = hoje.getDate().toString().padStart(2, "0");
+  const mes = String(hoje.getMonth() + 1).padStart(2, "0");
+  const ano = hoje.getFullYear();
+  const dataAtual = `${dia}/${mes}/${ano}`;
 
   useEffect(() => {
     // FETCH USERS
@@ -42,7 +50,7 @@ const New2 = ({ inputs, title }) => {
         snapShot.docs.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data() });
         });
-        seDataUsers(list);
+        setDataUsers(list);
       },
       (error) => {
         console.log(error);
@@ -77,6 +85,10 @@ const New2 = ({ inputs, title }) => {
 
   const navigate = useNavigate();
 
+  const cleanCarShop = () => {
+    setCarShop();
+  };
+
   const handleAdd = async (e) => {
     e.preventDefault();
     setError("");
@@ -84,14 +96,23 @@ const New2 = ({ inputs, title }) => {
     let findItem = dataProducts.filter(
       (selectedElement) => selectedElement.title === item
     );
+    let itemId = findItem.find((selectedElement) => selectedElement);
+    setItemId(itemId.id);
     let findCost = findItem.find((selectedElement) => selectedElement.cost);
     let findPrice = findItem.find((selectedElement) => selectedElement.price);
     let findQuantity = findItem.find(
       (selectedElement) => selectedElement.quantity
     );
-    let numberCheck = parseInt(findQuantity.quantity);
+    let numberCheck = findQuantity
+      ? parseInt(findQuantity.quantity)
+      : setError("Sem unidades em estoque para este item");
 
-    if (quantity > numberCheck) {
+    setProfit(
+      (parseInt(findPrice.price) - parseInt(findCost.cost)) * parseInt(quantity) +
+        parseInt(discount)
+    );
+
+    if (quantity > numberCheck || numberCheck === 0) {
       setError(
         `Apenas ${findQuantity.quantity} unidade(s) disponível(eis) para ${item}.`
       );
@@ -105,38 +126,47 @@ const New2 = ({ inputs, title }) => {
         price: parseInt(findPrice.price),
         quantity,
         paymentForm,
-        observations,
         discount,
+        observations,
       };
 
-      setTotalCost(parseInt((findCost.cost)));
-      setTotalPrice(parseInt((findPrice.price)));
+      setTotalCost(parseInt(findCost.cost));
+      setTotalPrice(parseInt(findPrice.price));
       setCarShop(itemsAdd);
-      
-      
     }
     setError("");
-      setService("");
-      setItem("");
-      setQuantity("");
-      setObservations("");
-      setDiscount("");
-
+    setService("");
+    setItem("");
+    setObservations("");
+    setDiscount(0);
   };
 
   const handleShopExecute = async (e) => {
     e.preventDefault();
 
     try {
-      // --------------write a document (insert sale)---------------------//
+      const productDocRef = doc(db, "products", itemId);
+
+      // Fetch the old quantity from the product document
+      const productDoc = await getDoc(productDocRef);
+      const oldQuantity = productDoc.data().quantity;
+
+      // Calculate the new quantity
+      const newQuantity = oldQuantity - quantity;
+
+      // Update the quantity field in the "products" collection
+      await setDoc(productDocRef, { quantity: newQuantity }, { merge: true });
+
+      // Insert sale document in the "sales" collection
       const docRef = await addDoc(collection(db, "sales"), {
         ...carShop,
         paymentForm,
         timeStamp: serverTimestamp(),
-        timeString: dataAtual
+        timeString: dataAtual,
+        profit,
       });
       console.log("Document written with ID: ", docRef.id);
-      // ---------------------------------------------------------------//
+
       navigate(-1);
     } catch (error) {
       console.log(error);
@@ -225,14 +255,22 @@ const New2 = ({ inputs, title }) => {
                   onChange={(e) => setDiscount(parseInt(e.target.value))}
                 />
               </div>
-              {carShop ? (<button type="submit">Registrar outro</button>) : (<button type="submit">Adicionar</button>)}
+              {carShop ? (
+                <button type="submit">Registrar outro</button>
+              ) : (
+                <button type="submit">Adicionar</button>
+              )}
               {error && <h2 className="error">{error}</h2>}
             </form>
           </div>
           <div className="right">
-              {carShop && (
-                <form onSubmit={handleShopExecute}>
+            {carShop && (
+              <form onSubmit={handleShopExecute}>
                 <div className="itemList">
+                  <div onClick={cleanCarShop} className="cancelIcon">
+                    <p style={{ color: "red" }}>cancelar</p>
+                    <FcCancel />
+                  </div>
                   <h5>{carShop.item}</h5>
                   <h6>{carShop.quantity} unidade(s) selecionada(s)</h6>
                   <h6>Comprador(a){carShop.client}</h6>
@@ -245,9 +283,7 @@ const New2 = ({ inputs, title }) => {
                   )}
                   <h6>
                     Lucro total = R$:{" "}
-                    {carShop.price * carShop.quantity -
-                      carShop.cost * carShop.quantity +
-                      carShop.discount}
+                    {profit}
                   </h6>
                 </div>
                 <div className="formInput">
@@ -272,8 +308,8 @@ const New2 = ({ inputs, title }) => {
                   <button>Confirmar compra</button>
                 </div>
               </form>
-              )}
-              <img src={shopCar} alt="img" />
+            )}
+            <img src={shopCar} alt="img" />
           </div>
         </div>
       </div>
@@ -281,4 +317,4 @@ const New2 = ({ inputs, title }) => {
   );
 };
 
-export default New2;
+export default Sales;

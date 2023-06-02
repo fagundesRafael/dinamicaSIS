@@ -35,8 +35,8 @@ const SingleSale = () => {
     console.log(saleData);
   }, [saleId, saleData]);
 
-  const goToEdit = () => {
-    navigate(`/sales/edit/${saleId}`);
+  const goBack = () => {
+    navigate(-1);
   };
 
   return (
@@ -46,8 +46,8 @@ const SingleSale = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton" onClick={goToEdit}>
-              Editar
+            <div className="editButton" onClick={goBack}>
+              Voltar
             </div>
             {/* <h1 className="title">Dados gerais da transação</h1> */}
             <div className="item">

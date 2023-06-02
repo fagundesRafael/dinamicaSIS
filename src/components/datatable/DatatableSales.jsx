@@ -46,7 +46,7 @@ const DatableSales = () => {
     {
       field: "action",
       headerName: "Ação",
-      width: 200,
+      width: 160,
       renderCell: (params) => {
         return (
           <div className="cellAction">

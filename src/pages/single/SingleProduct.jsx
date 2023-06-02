@@ -38,6 +38,10 @@ const SingleProduct = () => {
     navigate(`/products/edit/${productId}`)
   }
 
+  const backButton = () => {
+    navigate(-1)
+  }
+
   return (
     <div className="single">
       <Sidebar />
@@ -46,6 +50,7 @@ const SingleProduct = () => {
         <div className="top">
           <div className="left">
             <div className="editButton" onClick={goToEdit}>Editar</div>
+            <div className="backButton" onClick={backButton}>Voltar</div>
             <h1 className="title">Informações</h1>
             <div className="item">
               <img

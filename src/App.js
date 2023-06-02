@@ -1,19 +1,20 @@
 import "./style/dark.scss";
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import New from "./pages/new/New";
-import New2 from "./pages/new/New2";
+import NewProduct from "./pages/new/NewProduct";
+import NewClient from "./pages/new/NewClient";
+import NewSales from "./pages/new/NewSales";
 import SingleUser from "./pages/single/SingleUser";
 import SingleProduct from "./pages/single/SingleProduct";
 import SingleSale from "./pages/single/SingleSale";
 import ClientsList from "./pages/list/ClientsList"
 import ProductsList from "./pages/list/ProductsList"
 import ProductEdit from "./pages/edit/ProductEdit";
-import SaleEdit from "./pages/edit/SaleEdit";
+import UserEdit from "./pages/edit/UserEdit";
 import SalesList from "./pages/list/SalesList";
 import Configurations from "./pages/system/Configurations";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs, salesInputs } from "./formSource";
+import { productInputs, salesInputs } from "./formSource";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
@@ -38,9 +39,11 @@ function App() {
             <Route path="users">
               <Route index element={<RequireAuth><ClientsList /></RequireAuth>} />
               <Route path=":userId" element={<RequireAuth><SingleUser /></RequireAuth>} />
+              <Route path="edit/:userId" element={<RequireAuth><UserEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
+
               <Route
                 path="new"
-                element={<New inputs={userInputs} title="Inserir novo cliente" />}
+                element={<NewClient titleTop="Inserir novo cliente" />}
               />
             </Route>
             <Route path="products">
@@ -49,16 +52,15 @@ function App() {
               <Route path="edit/:productId" element={<RequireAuth><ProductEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
               <Route
                 path="new"
-                element={<New inputs={productInputs} title="Adicionar novo produto" />}
+                element={<NewProduct titleTop="Adicionar novo produto" />}
               />
             </Route>
             <Route path="sales">
               <Route index element={<RequireAuth><SalesList /></RequireAuth>} />
               <Route path=":saleId" element={<RequireAuth><SingleSale /></RequireAuth>} />
-              <Route path="edit/:saleId" element={<RequireAuth><SaleEdit inputs={productInputs} topTitle="Atualize as informações" /></RequireAuth>} />
               <Route
                 path="new"
-                element={<New2 inputs={salesInputs} title="Registrar nova transação" />}
+                element={<NewSales inputs={salesInputs} title="Registrar nova transação" />}
               />
             </Route>
             <Route path="configurations">

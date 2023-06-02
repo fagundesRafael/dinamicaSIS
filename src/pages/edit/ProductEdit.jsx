@@ -23,6 +23,7 @@ const ProductEdit = ({ inputs, topTitle }) => {
   const [color, setColor] = useState("");
   const [dataType, setDataType] = useState([""]);
   const [dataBrand, setDataBrand] = useState([""]);
+  
 
   useEffect(() => {
     // FETCH TYPES
@@ -76,6 +77,7 @@ const ProductEdit = ({ inputs, topTitle }) => {
     title,
     type,
     color,
+    status
   };
 
   const handleUpDate = async (e) => {
@@ -96,6 +98,7 @@ const ProductEdit = ({ inputs, topTitle }) => {
       setTitle(document.title);
       setType(document.type);
       setColor(document.color);
+      setStatus(document.status)
     }
   }, [document]);
 
@@ -110,19 +113,17 @@ const ProductEdit = ({ inputs, topTitle }) => {
         <div className="bottom">
           <div className="left">
             <img src={document && document.img} alt="" />
-            <p style={{ width: "260px", margin: "auto" }}>
-              NÃO É POSSÍVEL ATUALIZAR A IMAGEM DESTE PRODUTO. CASO SEJA
-              NECESSÁRIO, FAÇA A EXCLUSÃO DESTE E CRIE UM NOVO REGISTO NO LUGAR
-              DO ATUAL PELO MENU 'PRODUTOS'!
+            <p style={{ width: "260px", margin: "auto", marginTop: "30px", color: "red" }}>
+              IMAGEM NÃO RE-EDITÁVEL
             </p>
           </div>
           <div className="right">
             <form onSubmit={handleUpDate}>
               <div className="formInput">
-                <label>Nome:</label>
+                <label>Produto:</label>
                 <input
                   type="text"
-                  placeholder="nome do produto"
+                  placeholder="atualize o nome do produto"
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
                 />
@@ -159,7 +160,7 @@ const ProductEdit = ({ inputs, topTitle }) => {
                   type="number"
                   placeholder="R$"
                   value={cost}
-                  onChange={(e) => setCost(e.target.value)}
+                  onChange={(e) => setCost(parseInt(e.target.value))}
                 />
               </div>
               <div className="formInput">
@@ -188,7 +189,7 @@ const ProductEdit = ({ inputs, topTitle }) => {
                   type="number"
                   placeholder="R$"
                   value={price}
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setPrice(parseInt(e.target.value))}
                 />
               </div>
               <div className="formInput">
@@ -197,8 +198,10 @@ const ProductEdit = ({ inputs, topTitle }) => {
                   type="number"
                   placeholder="em estoque"
                   value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  onChange={(e) => setQuantity(parseInt(e.target.value))}
                 />
+              </div>
+              <div className="formInput">
               </div>
               <button
                 disabled={response === true || loading === true}

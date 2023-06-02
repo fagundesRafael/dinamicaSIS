@@ -12,4 +12,17 @@
   .chartGrid {
     stroke: rgb(228, 225, 225);
   }
+
+  .controls {
+    display: flex;
+    margin-bottom: 10px;
+    .singleSelect{
+      margin: 0 18px;
+      column-gap: 10px;
+
+      label{
+        margin-right: 6px;
+      }
+    }
+  }
 }

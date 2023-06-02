@@ -3,7 +3,7 @@ import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import Chart from "../../components/chart/Chart";
 import List from "../../components/table/Table";
-import { Link, useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { useEffect, useState } from "react";
@@ -11,6 +11,8 @@ import { useEffect, useState } from "react";
 const SingleUser = () => {
   const { userId } = useParams();
   const [userData, setUserData] = useState(null);
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,6 +34,14 @@ const SingleUser = () => {
     console.log(userData);
   }, [userId, userData]);
 
+  const goToEdit = () => {
+    navigate(`/users/edit/${userId}`)
+  }
+
+  const backButton = () => {
+    navigate(-1)
+  }
+
   return (
     <div className="single">
       <Sidebar />
@@ -39,7 +49,8 @@ const SingleUser = () => {
         <Navbar />
         <div className="top">
           <div className="left">
-            <div className="editButton"> <Link to="/">Voltar</Link> </div>
+          <div className="editButton" onClick={goToEdit}>Editar</div>
+            <div className="backButton" onClick={backButton}>Voltar</div>
             <h1 className="title">Informações</h1>
             <div className="item">
               <img
@@ -62,10 +73,6 @@ const SingleUser = () => {
                   <span className="itemValue">
                     {userData && (userData.address)}
                   </span>
-                </div>
-                <div className="detailItem">
-                  <span className="itemKey">País:</span>
-                  <span className="itemValue">BRA</span>
                 </div>
               </div>
             </div>

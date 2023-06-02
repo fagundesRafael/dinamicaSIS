@@ -59,7 +59,7 @@ const productInputs = [
   {
     id: "cost",
     label: "Custo:",
-    type: "number",
+    type: "numberCost",
     placeholder: "R$",
   },
   {
@@ -82,13 +82,13 @@ const productInputs = [
   {
     id: "price",
     label: "Preço:",
-    type: "number",
+    type: "numberPrice",
     placeholder: "R$",
   },
   {
     id: "quantity",
     label: "Quantidade",
-    type: "number",
+    type: "numberQuantity",
     placeholder: "em estoque",
   },
 ];

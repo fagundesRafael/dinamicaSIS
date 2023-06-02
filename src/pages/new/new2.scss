@@ -19,6 +19,7 @@
       }
 
       .right {
+        position: relative;
         flex: 2;
         text-align: center;
 
@@ -36,6 +37,27 @@
         form {
           display: flex;
           flex-direction: column;
+
+          .cancelIcon {
+            display: flex;
+            flex-direction: row;
+            position: absolute;
+            font-size: 16px;
+            right: 80px;
+            top: -6px;
+            transition: 0.1s;
+            
+
+            p {
+              font-size: 12.5px;
+            }
+          }
+
+          .cancelIcon:hover {
+            cursor: pointer;
+            transform: scale(1.05);
+            font-weight: bold;
+          }
 
           .itemList {
             background-color: rgba($color: #240077, $alpha: 0.1);
